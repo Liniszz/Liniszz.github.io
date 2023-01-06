@@ -77,7 +77,7 @@
 <p>​	注意：对应的bean要注入容器，否则不会生效。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestJob</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Scheduled(cron = &quot; 0/5 * * * * ?&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testJob</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//要执行的代码</span></span><br><span class="line">        System.out.println(<span class="string">&quot;定时任务执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>ps:		cron表达式可以在 <a target="_blank" rel="noopener" href="https://cron.qqe2.com/">在线cron表达式生成器</a>中生成</p>
+<p>tips:		cron表达式可以在 <a target="_blank" rel="noopener" href="https://cron.qqe2.com/">在线cron表达式生成器</a>中生成</p>
 
                 
                 <p class="end">__END__</p>
