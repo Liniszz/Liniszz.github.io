@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            Hexo
+            redis的基本数据类型
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,283 +31,135 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/index.css">
-<div id="count"></div>
-<div id="header" >
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
+<div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-title">Liniszz</h1>
-                <h2 class="header-description" id="hitokoto"></h2>
-                <h3 class="header-info" id="hitokotoAuthor"></h3>
+                <h1 class="header-subtitle">redis的基本数据类型</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-01-07
+                        </span>
+                        
+                            <span id="/posts/1348059054/" class="leancloud_visitors" data-flag-title="redis的基本数据类型">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/1348059054/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">Redis</span>
+                        
+                    
+                </div>
             
         </div>
     </div>
     
-        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
-            <i class="scroll-down-icon iconfont icon-return"></i>
-        </a>
-    
 </div>
 <div id="container">
     
-        
-            <!-- 首页 -->
-            <div class="articles">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="Redis的五大基本数据类型"><a href="#Redis的五大基本数据类型" class="headerlink" title="Redis的五大基本数据类型"></a>Redis的五大基本数据类型</h1><h2 id="1-String"><a href="#1-String" class="headerlink" title="1. String"></a>1. String</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>String 类型是<strong>二进制安全的</strong>。意味着 Redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。<br>String 类型是 Redis 最基本的数据类型，一个 Redis 中字符串 value 最多可以是 512M</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>String 的数据结构为简单动态字符串(Simple Dynamic String,缩写 SDS)。是可以修改的字符串，内部结构实现上类似于 Java 的 ArrayList，采用预分配几余空间的方式来减少内存的频繁分配.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/Redis-String.jpg" alt="Redis-String"></p>
+<p>如图中所示，内部为当前字符串实际分配的空间 capacity一般要高于实际字符串长度len。当字符串长度小于1M时，扩容都是加倍现有的空间，如果超过 1M，扩容时一次只会多扩1M的空间。需要注意的是字符串最大长度为 512M。</p>
+<p>##2.List</p>
+<p>###简介</p>
+<p>单键多值</p>
+<p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部(左边) 或者尾部( 右边 )。</p>
+<p>它的底层实际是个<strong>双向链表</strong>，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差。“</p>
+<h3 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h3><p>List 的数据结构为快速链表 quickList。</p>
+<p>首先在列表元素较少的情况下会使用一块连续的内存存储，这个结构是 ziplist，也即是压缩列表。它将所有的元素紧挨着一起存储，分配的是一块连续的内存。当数据量比较多的时候才会改成 quicklist。</p>
+<h2 id="3-Set"><a href="#3-Set" class="headerlink" title="3.Set"></a>3.Set</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>Redis set对外提供的功能与 list类似是一个列表的功能，特殊之处在于 set 是可以自动排重的，当你需要存储一个列表数据，又不希望出现重复数据时，set 是一个很好的选择，并且 set 提供了判断某个成员是否在一个 set 集合内的重要接口，这个也是 list 所不能提供的。<br>Redis 的 Set 是 string类型的无序集合。它<strong>底层是一个 value 为 null的 hash表</strong>，所以添加，删除，查找的复杂度都是 O(1)<br>一个算法，随着数据的增加，执行时间的长短，如果是 O(1)，数据增加，查找数据的时间不变</p>
+<h3 id="数据结构-2"><a href="#数据结构-2" class="headerlink" title="数据结构"></a>数据结构</h3><p>Set数据结构是 dict 字典，字典是用哈希表实现的。</p>
+<p>Java 中 HashSet 的内部实现使用的是 HashMap，只不过所有的 value 都指向同一个对象</p>
+<p>Redis的 set结构也是一样，它的内部也使用 hash结构，所有的 value都指向同一个内部值。</p>
+<h2 id="4-Hash"><a href="#4-Hash" class="headerlink" title="4.Hash"></a>4.Hash</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p>Redis hash 是一个键值对集合</p>
+<p>Redis hash 是一个 string类型的 field 和 value 的映射表，hash 特别适合用于存储对象。</p>
+<p>类似 Java 里面的 Map&lt;String.Object&gt;+</p>
+<p>用户ID 为查找的 key，存储的 value 用户对象包含姓名，年龄，生日等信息，如果用普通的 key&#x2F;value结构来存储</p>
+<p>有以下存储方式:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/Redis-Hash-2.jpg" alt="Redis-Hash-2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/redis-Hash-1.jpg" alt="redis-Hash-1"></p>
+<p>通过 key(Key1)+field(f1||f2||f3)就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题</p>
+<h3 id="数据结构-3"><a href="#数据结构-3" class="headerlink" title="数据结构"></a>数据结构</h3><p>Hash 类型对应的数据结构是两种: ziplist (压缩列表)，hashtable (哈希表)。当field-value 长度较短且个数较少时，使用 ziplist，否则使用 hashtable。</p>
+<h2 id="5-Zset"><a href="#5-Zset" class="headerlink" title="5.Zset"></a>5.Zset</h2><h3 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h3><p>Redis 有序集合 zset 与普通集合 set 非常相似，是一个没有重复元素的字符串集合。不同之处是有序集合的每个成员都关联了一个评分(score),这个评分(score ) 被用来按照从最低分到最高分的方式排序集合中的成员。集合的成员是唯一的，但是评分可以是重复了<br>因为元素是有序的,所以你也可以很快的根据评分( score) 或者次序( position)来获取一个范围的元素。<br>访问有序集合的中间元素也是非常快的,因此你能够使用有序集合作为一个没有重复成员的智能列表。</p>
+<h3 id="数据结构-4"><a href="#数据结构-4" class="headerlink" title="数据结构"></a>数据结构</h3><p>SortedSet(zset)是 Redis 提供的一个非常特别的数据结构，一方面它等价于 Java的数据结构 Map&lt;String, Double&gt;，可以给每一个元素</p>
+<p>value 赋予一个权重 score，另一方面它又类似于 TreeSet，内部的元素会按照权重 score 进行排序，可以得到每个元素的名次，还可</p>
+<p>通过 score 的范围来获取元素的列表。</p>
+<p>zset 底层使用了两个数据结构</p>
+<p>(1)  hash，hash 的作用就是关联元素 value 和权重 score，保障元素 value 的唯性，可以通过元素 value 找到相应的 score 值。</p>
+<p>(2)  跳跃表，跳跃表的目的在于给元素 value 排序，根据 score 的范围获取元素列表。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="跳跃表"><a href="#跳跃表" class="headerlink" title="跳跃表"></a>跳跃表</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><p>有序集合在生活中比较常见，例如根据成绩对学生排名，根据得分对玩家排名等。对于有序集合的底层实现，可以用数组、平衡树、链表等。数组不便元素的插入删除，平衡树或红黑树虽然效率高但结构复杂，链表查询需要遍历所有效率低。Redis采用的是跳跃表。</p>
+<h3 id="数据结构-5"><a href="#数据结构-5" class="headerlink" title="数据结构"></a>数据结构</h3><p>&#x2F;&#x2F;TODO</p>
+<p>博主正在尝试代码实现，后续会补充上数据结构的代码实现</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>跳跃表中含有[1,11,21,31,41,51,61]，此时要找出51，先在第二层中往后找，找到21，比51小则接着往后找，后面是空，则往下走</p>
+<p>到达第一层，接着往后找找到41，比51小接着往后找，找到61，比51大，则往下走到达第0层，往后找找到51这个节点，总共搜索四次</p>
+<p>图示如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/%E7%A4%BA%E4%BE%8B.jpg" alt="示例"></p>
+
                 
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/1937845091/">Redis中Key的操作命令</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-07
-                            </span>
-                            
-                                <span id="/posts/1937845091/" class="leancloud_visitors" data-flag-title="Redis中Key的操作命令">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/1937845091/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/1348059054/" target="_blank">redis的基本数据类型</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/Redis/">Redis</a>
+                        
                     </div>
                 
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/1348059054/">redis的基本数据类型</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-07
-                            </span>
-                            
-                                <span id="/posts/1348059054/" class="leancloud_visitors" data-flag-title="redis的基本数据类型">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/1348059054/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/192040698/">从尾到头打印链表</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-06
-                            </span>
-                            
-                                <span id="/posts/192040698/" class="leancloud_visitors" data-flag-title="从尾到头打印链表">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/192040698/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/3687453311/">SpringBoot中定时任务</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-06
-                            </span>
-                            
-                                <span id="/posts/3687453311/" class="leancloud_visitors" data-flag-title="SpringBoot中定时任务">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/3687453311/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/3907716225/">二分查找</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-05
-                            </span>
-                            
-                                <span id="/posts/3907716225/" class="leancloud_visitors" data-flag-title="二分查找">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/3907716225/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/298572225/">包含min函数的栈</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-05
-                            </span>
-                            
-                                <span id="/posts/298572225/" class="leancloud_visitors" data-flag-title="包含min函数的栈">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/298572225/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/4170158351/">用两个栈实现队列</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2023-01-04
-                            </span>
-                            
-                                <span id="/posts/4170158351/" class="leancloud_visitors" data-flag-title="用两个栈实现队列">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/4170158351/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/2947078793/">FastJson配置</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2022-12-01
-                            </span>
-                            
-                                <span id="/posts/2947078793/" class="leancloud_visitors" data-flag-title="FastJson配置">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/2947078793/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/2100227203/">SpringSecurity</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2022-11-22
-                            </span>
-                            
-                                <span id="/posts/2100227203/" class="leancloud_visitors" data-flag-title="SpringSecurity">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/2100227203/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
-                    <div class="article">
-                        <div class="article-title">
-                            <a href="/posts/3649316489/">Vue项目创建命令</a>
-                            
-                        </div>
-                        <div class="article-abstract">
-                            
-                        </div>
-                        <div class="clear"></div>
-                        <div class="article-info">
-                            <span>
-                                <i class="iconfont icon-time"></i> 发表时间：2022-11-14
-                            </span>
-                            
-                                <span id="/posts/3649316489/" class="leancloud_visitors" data-flag-title="Vue项目创建命令">
-                                    <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                                </span>
-                            
-                            <span>
-                                <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/3649316489/"></span>
-                            </span>
-                        </div>
-                        <div class="clear"></div>     
-                    </div>
-                
+                <div class="article-prev-next">
+                    
+                        <a href="/posts/1937845091/" class="prev-prefix">« </a> 上一篇：    <a href="/posts/1937845091/" title="发布于 2023-01-07 11:25">Redis中Key的操作命令</a>
+                        <br>
+                    
+                    
+                        <a href="/posts/192040698/" class="next-prefix">» </a> 下一篇：    <a href="/posts/192040698/" title="发布于 2023-01-06 07:50">从尾到头打印链表</a>
+                    
+                </div>
             </div>
             
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -333,7 +185,7 @@
             <div class="menu-list">
                 <ul>
                     
-                        <li class=" active "><a href="/" class="" target="_self"><span class="iconfont icon-home-fill"></span>首页</a></li>
+                        <li class=""><a href="/" class="" target="_self"><span class="iconfont icon-home-fill"></span>首页</a></li>
                     
                         <li class=""><a href="/category" class="" target="_self"><span class="iconfont icon-folder-fill"></span>分类</a></li>
                     
