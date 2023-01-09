@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            标签 - Redis
+            Redis缓存雪崩
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,32 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">标签归档</h1>
+                <h1 class="header-subtitle">Redis缓存雪崩</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-01-09
+                        </span>
+                        
+                            <span id="/posts/304378171/" class="leancloud_visitors" data-flag-title="Redis缓存雪崩">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/304378171/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">Redis</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,97 +65,81 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="Redis缓存雪崩"><a href="#Redis缓存雪崩" class="headerlink" title="Redis缓存雪崩"></a>Redis缓存雪崩</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>​		key 对应的数据存在，但在 redis 中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端 DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端 DB 压垮。</p>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><ol>
+<li>数据库压力变大，服务器崩溃</li>
+</ol>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
+<li>在极少的时间段，查询大量key的集中过期情况</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li><p><strong>构建多级缓存架构:</strong></p>
+<p>nginx 缓存 + redis 缓存 +其他缓存(ehcache等)</p>
+</li>
+<li><p><strong>使用锁或队列:</strong></p>
+<p>用加锁或者队列的方式保证来保证不会有大量的线程对数据库一次性进行读写，从而避免失效时大量的并发请求落到底层存储系统上。不适用高并发情况</p>
+</li>
+<li><p><strong>设置过期标志更新缓存：</strong></p>
+<p>记录缓存数据是否过期( 设置提前量 )，如果过期会触发通知另外的线程在后台去更新实际 key 的缓存。</p>
+</li>
+<li><p><strong>将缓存失效时间分散开：</strong></p>
+<p>比如我们可以在原有的失效时间基础上增加一个随机值，比如 1-5 分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
+</li>
+</ol>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/304378171/" target="_blank">Redis缓存雪崩</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            当前标签：<span class="tag">Redis</span>
+                            <a href="/tag/Redis/">Redis</a>
                         
-                    </span>
+                    </div>
+                
+                <div class="article-prev-next">
                     
                     
-                        
-                            <div class="archive-title">
-                                <h2 class="archive-year">2023</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/304378171/"><span>Redis缓存雪崩</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/544208410/"><span>Redis缓存击穿</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/4097168238/"><span>Redis缓存穿透</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3801500897/"><span>Redis中锁的应用</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-08</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/227118491/"><span>Jedis的基本操作</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-08</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1937845091/"><span>Redis中常用的操作命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-07</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1348059054/"><span>Redis的基本数据类型</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-07</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/544208410/" class="next-prefix">» </a> 下一篇：    <a href="/posts/544208410/" title="发布于 2023-01-09 04:05">Redis缓存击穿</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>

@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            标签 - Redis
+            Jedis的基本操作
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,36 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">标签归档</h1>
+                <h1 class="header-subtitle">Jedis的基本操作</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-01-08
+                        </span>
+                        
+                            <span id="/posts/227118491/" class="leancloud_visitors" data-flag-title="Jedis的基本操作">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/227118491/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">java</span>
+                        
+                            <span class="tag-color">Redis</span>
+                        
+                            <span class="tag-color">Jedis</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,97 +69,85 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="Jedis的基本操作"><a href="#Jedis的基本操作" class="headerlink" title="Jedis的基本操作"></a>Jedis的基本操作</h1><h2 id="基础示例"><a href="#基础示例" class="headerlink" title="基础示例"></a>基础示例</h2><p>在此所有操作之前，应该先修改redis.conf的配置</p>
+<ol>
+<li><p>将redis.conf中的protected-mode 后面的yes 改为no, protected-mode为保护模式，当他为yes时只能够本机访问，其他机器无法访问。 <img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/redis.conf%E9%85%8D%E7%BD%AE1.jpg" alt="redis.conf配置1"></p>
+</li>
+<li><p>将network注释部分的bind注释掉，此处bind表示只有主机能够访问redis</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Liniszz/BlogImg@main/img/image-20230108104742630.png" alt="image-20230108104742630"></p>
+</li>
+</ol>
+<p>完成这两步之后就可以通过本地的编译器连接到虚拟机的Redis了</p>
+<h3 id="基础步骤"><a href="#基础步骤" class="headerlink" title="基础步骤"></a>基础步骤</h3><p>创建一个maven项目，导入依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;redis.clients&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jedis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">3.2</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;Redis运行的地址&quot;</span>,<span class="number">6379</span>);   <span class="comment">//连接Redis</span></span><br><span class="line"><span class="type">String</span> <span class="variable">val</span> <span class="operator">=</span> jedis.ping;</span><br><span class="line">System.out.print(val);</span><br><span class="line">jedis.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h2><p>在Java中创建出Jedis对象后，调用的方法名与在redis中命令行中输入的命令相似。</p>
+<p>可以查阅：<a target="_blank" rel="noopener" href="https://liniszz.github.io/posts/1937845091/">Redis中常用的操作命令</a></p>
+<p><strong>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;持续更新&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</strong></p>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/227118491/" target="_blank">Jedis的基本操作</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            当前标签：<span class="tag">Redis</span>
+                            <a href="/tag/java/">java</a>
                         
-                    </span>
-                    
-                    
+                            <a href="/tag/Redis/">Redis</a>
                         
-                            <div class="archive-title">
-                                <h2 class="archive-year">2023</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/304378171/"><span>Redis缓存雪崩</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
+                            <a href="/tag/Jedis/">Jedis</a>
+                        
+                    </div>
+                
+                <div class="article-prev-next">
                     
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/544208410/"><span>Redis缓存击穿</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/3801500897/" class="prev-prefix">« </a> 上一篇：    <a href="/posts/3801500897/" title="发布于 2023-01-08 03:09">Redis中锁的应用</a>
+                        <br>
                     
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/4097168238/"><span>Redis缓存穿透</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-09</span>
-                                </div>
-                            </div>
-                        </div>
                     
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3801500897/"><span>Redis中锁的应用</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-08</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/227118491/"><span>Jedis的基本操作</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-08</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1937845091/"><span>Redis中常用的操作命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-07</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1348059054/"><span>Redis的基本数据类型</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">01-07</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/1937845091/" class="next-prefix">» </a> 下一篇：    <a href="/posts/1937845091/" title="发布于 2023-01-07 11:25">Redis中常用的操作命令</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>
