@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            归档
+            docker常用命令
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,32 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">归档</h1>
+                <h1 class="header-subtitle">docker常用命令</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-02-15
+                        </span>
+                        
+                            <span id="/posts/1956304856/" class="leancloud_visitors" data-flag-title="docker常用命令">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/1956304856/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">docker</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,47 +65,95 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h1><h2 id="帮助启动类命令"><a href="#帮助启动类命令" class="headerlink" title="帮助启动类命令"></a>帮助启动类命令</h2><p>启动docker： <code>systemctl start docker</code></p>
+<p>停止docker:   <code> systemctl stop docker</code></p>
+<p>重启docker:	<code>systemctl restart docker</code></p>
+<p>查看docker状态：	<code>systemctl status docker</code></p>
+<p>开机启动:	<code>systemctl enable docker</code></p>
+<p>查看docker概要信息:	<code>docker info</code></p>
+<p>查看docker总体帮助文档:	<code>docker --help</code></p>
+<p>查看docker命令帮助文档:	<code>docker  具体命令  --help</code></p>
+<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><p>列出本地主机上的镜像：<code>docker images</code></p>
+<ul>
+<li><code>-a </code>列出本地所有镜像</li>
+<li>-q 只显示镜像ID</li>
+</ul>
+<p>查询是否存在某个镜像：<code>docker search 某个XXX镜像名字</code></p>
+<ul>
+<li><code>--limit  N  镜像名</code>  只列出前N个镜像,默认25个</li>
+</ul>
+<p>拉去镜像到本地：    <code>docker pull 镜像名</code></p>
+<p>查看镜像&#x2F;容器&#x2F;数据卷所占的空间：<code>docker system df</code></p>
+<p>删除镜像：<code>docker rmi 某个xxx镜像名字ID</code></p>
+<h2 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h2><p>启动已停止运行的容器：	<code>docker start  容器ID或者容器名</code></p>
+<p>重启容器：	<code>docker restart 容器ID或者容器名</code></p>
+<p>停止容器：	<code>docker stop 容器ID或者容器名</code></p>
+<p>强制停止容器：	<code>docker kill 容器ID或容器名</code></p>
+<p>删除已停止的容器：	<code>docker rm 容器ID</code></p>
+<p>进入正在运行的容器并以命令行交互：	<code>docker exec -it 容器ID /bin/bash </code></p>
+<p>从容器上复制文件到主机：	<code>docker cp 容器ID:容器内路径  目的主机路径</code></p>
+<p>导入或导出容器：	</p>
+<ul>
+<li>export 导出容器的内容流作为一个tar归档文件[对应import命令]：	<code>docker export 容器ID &gt; 文件名.tar</code></li>
+<li>import 从tar包中的内容创建一个新的文件系统再导入为镜像[对应export]：   cat  文件名.tar  |  docker import-镜像用户&#x2F;镜像名:镜像版本号</li>
+</ul>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/1956304856/" target="_blank">docker常用命令</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            目前共计 20 篇日志，继续加油！
+                            <a href="/tag/docker/">docker</a>
                         
-                    </span>
+                    </div>
+                
+                <div class="article-prev-next">
+                    
+                        <a href="/posts/1916652812/" class="prev-prefix">« </a> 上一篇：    <a href="/posts/1916652812/" title="发布于 2023-04-06 12:40">摆动序列</a>
+                        <br>
                     
                     
-                        
-                            <div class="archive-title">
-                                <h2 class="archive-year">2022</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/2100227203/"><span>SpringSecurity</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">11-22</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3649316489/"><span>Vue项目创建命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">11-14</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/3095109088/" class="next-prefix">» </a> 下一篇：    <a href="/posts/3095109088/" title="发布于 2023-02-13 04:02">nginx常用命令</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -118,7 +183,7 @@
                     
                         <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
                     
-                        <li class=" active "><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
+                        <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
                     
                         <li class=""><a href="/about" class="" target="_self"><span class="iconfont icon-about-fill"></span>关于</a></li>
                     

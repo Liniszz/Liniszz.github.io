@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            归档
+            分布式锁的应用
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,32 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">归档</h1>
+                <h1 class="header-subtitle">分布式锁的应用</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-01-10
+                        </span>
+                        
+                            <span id="/posts/218437454/" class="leancloud_visitors" data-flag-title="分布式锁的应用">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/218437454/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">锁</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,47 +65,95 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="分布式锁的应用"><a href="#分布式锁的应用" class="headerlink" title="分布式锁的应用"></a>分布式锁的应用</h1><h2 id="使用setnx"><a href="#使用setnx" class="headerlink" title="使用setnx"></a>使用setnx</h2><ol>
+<li><p>使用setnx上锁，通过del释放锁</p>
+</li>
+<li><p>设定锁的过期时间，以防锁一直没有释放</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setnx users 10</span><br><span class="line">expire users 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防止上锁之后出现异常，无法设置过期时间，可以上锁的时候同时设置过期时间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set users 10 nx ex 12</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="用uuid防止误删"><a href="#用uuid防止误删" class="headerlink" title="用uuid防止误删"></a>用uuid防止误删</h2><ol>
+<li><p>用uuid表示不同的操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set lock uuid nx ex 10</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>释放锁的时候需要先判断锁的uuid是否与当前的uuid一样</p>
+</li>
+</ol>
+<h2 id="使用lua脚本来实现操作的原子性"><a href="#使用lua脚本来实现操作的原子性" class="headerlink" title="使用lua脚本来实现操作的原子性"></a>使用lua脚本来实现操作的原子性</h2><ol>
+<li>在释放锁时通过执行lua脚本来实现删除的原子性</li>
+</ol>
+<p>##实现分布式锁的条件</p>
+<ol>
+<li><p>互斥性</p>
+<p>在任意时刻，只有一个客户端能够持有锁</p>
+</li>
+<li><p>不会发生死锁，</p>
+<p>及时有一个客户端在持有所得期间崩溃而没有主动解锁，也能保证后续其他客户端能够枷锁</p>
+</li>
+<li><p>加锁和解锁必须是同一个客户端，即客户端不能够释放别的客户端的锁</p>
+</li>
+<li><p>加锁和解锁必须具有原子性</p>
+</li>
+</ol>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/218437454/" target="_blank">分布式锁的应用</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            目前共计 20 篇日志，继续加油！
+                            <a href="/tag/%E9%94%81/">锁</a>
                         
-                    </span>
+                    </div>
+                
+                <div class="article-prev-next">
+                    
+                        <a href="/posts/3095109088/" class="prev-prefix">« </a> 上一篇：    <a href="/posts/3095109088/" title="发布于 2023-02-13 04:02">nginx常用命令</a>
+                        <br>
                     
                     
-                        
-                            <div class="archive-title">
-                                <h2 class="archive-year">2022</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/2100227203/"><span>SpringSecurity</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">11-22</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3649316489/"><span>Vue项目创建命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">11-14</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/2193072553/" class="next-prefix">» </a> 下一篇：    <a href="/posts/2193072553/" title="发布于 2023-01-09 09:46">反转链表</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -118,7 +183,7 @@
                     
                         <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
                     
-                        <li class=" active "><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
+                        <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
                     
                         <li class=""><a href="/about" class="" target="_self"><span class="iconfont icon-about-fill"></span>关于</a></li>
                     
