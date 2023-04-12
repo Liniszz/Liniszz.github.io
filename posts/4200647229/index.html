@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            标签
+            LeetCode-53:最大子数组和
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,36 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/page.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">标签</h1>
+                <h1 class="header-subtitle">LeetCode-53:最大子数组和</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-04-06
+                        </span>
+                        
+                            <span id="/posts/4200647229/" class="leancloud_visitors" data-flag-title="LeetCode-53:最大子数组和">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/4200647229/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">java</span>
+                        
+                            <span class="tag-color">贪心</span>
+                        
+                            <span class="tag-color">dp</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,22 +69,87 @@
 </div>
 <div id="container">
     
-        <!-- 独立页面 -->
-        
-            <div class="tags">
-                <div class="tags-title">
-                    目前共计 19 个标签
-                </div>
-                <div class="tags-content">
-                    <div class="tags-light">
-                        <a href="/tag/FastJson/" style="font-size: 12px; color: #ccc">FastJson</a> <a href="/tag/Jedis/" style="font-size: 12px; color: #ccc">Jedis</a> <a href="/tag/Redis/" style="font-size: 22.4px; color: #363636">Redis</a> <a href="/tag/SpringBoot/" style="font-size: 12px; color: #ccc">SpringBoot</a> <a href="/tag/String/" style="font-size: 17.2px; color: #818181">String</a> <a href="/tag/Vue/" style="font-size: 12px; color: #ccc">Vue</a> <a href="/tag/docker/" style="font-size: 12px; color: #ccc">docker</a> <a href="/tag/dp/" style="font-size: 14.6px; color: #a7a7a7">dp</a> <a href="/tag/java/" style="font-size: 25px; color: #111">java</a> <a href="/tag/kmp/" style="font-size: 14.6px; color: #a7a7a7">kmp</a> <a href="/tag/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/tag/springSecurity/" style="font-size: 12px; color: #ccc">springSecurity</a> <a href="/tag/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 12px; color: #ccc">二分查找</a> <a href="/tag/%E6%A0%88/" style="font-size: 14.6px; color: #a7a7a7">栈</a> <a href="/tag/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 19.8px; color: #5c5c5c">每日一题</a> <a href="/tag/%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #ccc">算法</a> <a href="/tag/%E8%B4%AA%E5%BF%83/" style="font-size: 14.6px; color: #a7a7a7">贪心</a> <a href="/tag/%E9%80%92%E5%BD%92/" style="font-size: 14.6px; color: #a7a7a7">递归</a> <a href="/tag/%E9%94%81/" style="font-size: 14.6px; color: #a7a7a7">锁</a>
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="LeetCode-53-最大子数组和"><a href="#LeetCode-53-最大子数组和" class="headerlink" title="LeetCode-53:最大子数组和"></a>LeetCode-53:最大子数组和</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p><strong>子数组</strong> 是数组中的一个连续部分。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-2,1,-3,4,-1,2,1,-5,4]</span><br><span class="line">输出：6</span><br><span class="line">解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [5,4,-1,7,8]</span><br><span class="line">输出：23</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>从头开始记录当前位置最大和，若是当前位置最大和为负数则放弃，从当前位置重新开始记录最大和</p>
+<h3 id="dp"><a href="#dp" class="headerlink" title="dp"></a>dp</h3><p>通过维护每个位置上的最大和，在维护的过程中记录最大值。</p>
+<p>转移方程</p>
+<p>​				<code>dp[i] = Math.max(nums[i],dp[i - 1] + nums[i])</code></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="贪心-1"><a href="#贪心-1" class="headerlink" title="贪心"></a>贪心</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">1</span>)    <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> Integer.MIN_VALUE, cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            cnt += nums[i];</span><br><span class="line">            <span class="keyword">if</span>(cnt &gt; res)   res = cnt;</span><br><span class="line">            <span class="keyword">if</span>(cnt &lt; <span class="number">0</span>)     cnt = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="dp-1"><a href="#dp-1" class="headerlink" title="dp"></a>dp</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> dp[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="comment">//维护i位置的最大和</span></span><br><span class="line">            dp[i] = Math.max(nums[i],dp[i - <span class="number">1</span>] + nums[i]);</span><br><span class="line">            <span class="comment">//记录最大值</span></span><br><span class="line">            <span class="keyword">if</span>(dp[i] &gt; res) res = dp[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/submissions/421714587/">Leetcode-53.最大子数组和</a></p>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/4200647229/" target="_blank">LeetCode-53:最大子数组和</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/java/">java</a>
+                        
+                            <a href="/tag/%E8%B4%AA%E5%BF%83/">贪心</a>
+                        
+                            <a href="/tag/dp/">dp</a>
+                        
                     </div>
-                    <div class="tags-dark">
-                        <a href="/tag/FastJson/" style="font-size: 12px; color: #666">FastJson</a> <a href="/tag/Jedis/" style="font-size: 12px; color: #666">Jedis</a> <a href="/tag/Redis/" style="font-size: 22.4px; color: #d3d3d3">Redis</a> <a href="/tag/SpringBoot/" style="font-size: 12px; color: #666">SpringBoot</a> <a href="/tag/String/" style="font-size: 17.2px; color: #9c9c9c">String</a> <a href="/tag/Vue/" style="font-size: 12px; color: #666">Vue</a> <a href="/tag/docker/" style="font-size: 12px; color: #666">docker</a> <a href="/tag/dp/" style="font-size: 14.6px; color: #818181">dp</a> <a href="/tag/java/" style="font-size: 25px; color: #eee">java</a> <a href="/tag/kmp/" style="font-size: 14.6px; color: #818181">kmp</a> <a href="/tag/nginx/" style="font-size: 12px; color: #666">nginx</a> <a href="/tag/springSecurity/" style="font-size: 12px; color: #666">springSecurity</a> <a href="/tag/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 12px; color: #666">二分查找</a> <a href="/tag/%E6%A0%88/" style="font-size: 14.6px; color: #818181">栈</a> <a href="/tag/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 19.8px; color: #b8b8b8">每日一题</a> <a href="/tag/%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #666">算法</a> <a href="/tag/%E8%B4%AA%E5%BF%83/" style="font-size: 14.6px; color: #818181">贪心</a> <a href="/tag/%E9%80%92%E5%BD%92/" style="font-size: 14.6px; color: #818181">递归</a> <a href="/tag/%E9%94%81/" style="font-size: 14.6px; color: #818181">锁</a>
-                    </div>
+                
+                <div class="article-prev-next">
+                    
+                        <a href="/posts/3950551804/" class="prev-prefix">« </a> 上一篇：    <a href="/posts/3950551804/" title="发布于 2023-04-10 08:33">左旋转字符串</a>
+                        <br>
+                    
+                    
+                        <a href="/posts/1916652812/" class="next-prefix">» </a> 下一篇：    <a href="/posts/1916652812/" title="发布于 2023-04-06 12:40">摆动序列</a>
+                    
                 </div>
             </div>
+            
+    <div class="article-comments">
         
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
+    </div>
+
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -91,7 +177,7 @@
                     
                         <li class=""><a href="/" class="" target="_self"><span class="iconfont icon-home-fill"></span>首页</a></li>
                     
-                        <li class=" active "><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
+                        <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
                     
                         <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
                     
