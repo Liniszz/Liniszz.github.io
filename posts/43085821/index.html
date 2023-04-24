@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            归档
+            mysql中值为null的值是否占用存储空间
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,32 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">归档</h1>
+                <h1 class="header-subtitle">mysql中值为null的值是否占用存储空间</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-04-24
+                        </span>
+                        
+                            <span id="/posts/43085821/" class="leancloud_visitors" data-flag-title="mysql中值为null的值是否占用存储空间">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/43085821/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">mysql</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,135 +65,71 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <p>#mysql中值为null的值是否占用存储空间</p>
+<p>在学习mysql的过程中看到一个问题——mysql中值为null的值是否占用存储空间？</p>
+<p>看到问题之后因为不清楚mysql的内部存储方式，就去寻找答案。初次查找时找到的答案是占用存储空间的，但是在近期学习过程中发现这个问题实际上是分情况的。</p>
+<ol>
+<li><p>行格式为 <strong>COMPACT</strong></p>
+<p>当行格式为<strong>COMPACT</strong>时，记录中会有一个NULL值列表用来存储可为NULL值列的信息，具体存储方式是使用二进制的方式，从右到左对应第一列到第n列，<strong>当二进制位为1时表示该列为空，当二进制位为0时表示该列不为空</strong>，此时无论该列是否为空，都会占用1个字节的存储空间。</p>
+</li>
+<li><p>行格式为 <strong>REDUNDANT</strong> 时</p>
+<p>当行格式为<strong>REDUNDANT</strong>的时候，得具体看该列的数据类型，如果该列的数据类型为<strong>定长</strong>的数据类型，就算该列的值为null也会占用存储空间，如果该列的数据类型为<strong>变长</strong>的数据类型，此时该列的值为空不占存储空间。</p>
+</li>
+</ol>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/43085821/" target="_blank">mysql中值为null的值是否占用存储空间</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            目前共计 27 篇日志，继续加油！
+                            <a href="/tag/mysql/">mysql</a>
                         
-                    </span>
+                    </div>
+                
+                <div class="article-prev-next">
                     
                     
-                        
-                            <div class="archive-title">
-                                <h2 class="archive-year">2023</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/43085821/"><span>mysql中值为null的值是否占用存储空间</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-24</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3751830285/"><span>LeetCode-20-有效的括号</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-15</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3524943812/"><span>LeetCode-225-用队列实现栈</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-14</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3184173339/"><span>LeetCode-459-重复的子字符串</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-12</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3695291344/"><span>LeetCode-28-实现strStr()</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-10</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3950551804/"><span>左旋转字符串</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-10</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/4200647229/"><span>LeetCode-53:最大子数组和</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-06</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1916652812/"><span>摆动序列</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-06</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1956304856/"><span>docker常用命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">02-15</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3095109088/"><span>nginx常用命令</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">02-13</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/3751830285/" class="next-prefix">» </a> 下一篇：    <a href="/posts/3751830285/" title="发布于 2023-04-15 10:14">LeetCode-20-有效的括号</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
-    <div class="pagination-bottom">
-        <div class="pagination">
-            
-                <a href="/archive/page/2/">下一页</a>
-            
-        </div>
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
     </div>
 
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -206,7 +159,7 @@
                     
                         <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
                     
-                        <li class=" active "><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
+                        <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
                     
                         <li class=""><a href="/about" class="" target="_self"><span class="iconfont icon-about-fill"></span>关于</a></li>
                     
