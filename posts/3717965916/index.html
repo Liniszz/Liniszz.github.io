@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            归档
+            JVM---虚拟机栈
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -31,15 +31,32 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <a id="cover"></a>
-    <link type="text/css" rel="stylesheet" href="/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="/css/post.css">
 <div id="header" class="header">
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">归档</h1>
+                <h1 class="header-subtitle">JVM---虚拟机栈</h1>
                 <div class="header-subinfo">
-                    <p class="article-info-text Chinese"></p>
-                    <p class="article-info-text English"></p>                  
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2023-05-12
+                        </span>
+                        
+                            <span id="/posts/3717965916/" class="leancloud_visitors" data-flag-title="JVM---虚拟机栈">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/posts/3717965916/"></span>
+                        </span>  
+                    </p>
+                    
+                    
+                        
+                            <span class="tag-color">Jvm</span>
+                        
+                    
                 </div>
             
         </div>
@@ -48,135 +65,72 @@
 </div>
 <div id="container">
     
-        
-            <!-- 归档页面、分类归档页面、标签归档页面 -->
-            <div class="articles">
-                <div class="articles-wrap">
-                    <span class="archive-move-on"></span>
-                    <span class="archive-counter">
+        <!-- 文章页面 -->
+        <div id="article">
+            <div class="toc"></div>
+            <div class="article-body">
+                <h1 id="Jvm—虚拟机栈"><a href="#Jvm—虚拟机栈" class="headerlink" title="Jvm—虚拟机栈"></a>Jvm—虚拟机栈</h1><p>在Jvm中虚拟机栈用栈桢的形式存放局部变量表，锁记录，操作数栈，返回地址等信息。</p>
+<h2 id="1-局部变量表"><a href="#1-局部变量表" class="headerlink" title="1. 局部变量表"></a>1. 局部变量表</h2><p>举例说明：</p>
+<ul>
+<li><p>例如在main函数中我们的参数<code>String[] args</code>，虚拟机栈的栈桢中会创建一个对象引用，指向虚拟机为我们创建的String数组。</p>
+</li>
+<li><p>在调用方法的时候，Jvm会创建一个新的栈桢存入虚拟机栈中，这个栈桢中的局部变量表则存放的是传入该方法的参数以及方法中定义的变量等信息</p>
+</li>
+</ul>
+<h2 id="2-锁记录"><a href="#2-锁记录" class="headerlink" title="2. 锁记录"></a>2. 锁记录</h2><h2 id="3-操作数栈"><a href="#3-操作数栈" class="headerlink" title="3.  操作数栈"></a>3.  操作数栈</h2><h2 id="4-返回地址"><a href="#4-返回地址" class="headerlink" title="4. 返回地址"></a>4. 返回地址</h2><p>举例说明：</p>
+<ul>
+<li>我们在main方法中调用其他方法的时候，会将地址存放到该方法对应栈桢的返回地址中，在该方法执行完弹出该栈桢的时候就会返回main方法中继续执行，并将返回结果存入main方法对应栈桢中的操作数栈中。</li>
+</ul>
+
+                
+                <p class="end">__END__</p>
+            </div>
+            <div class="article-footer">
+                <div class="suffix-box">
+    <div class="suffix-box-left">
+        <img src="/image/sidebar/avatar.jpg" alt="Liniszz">
+    </div>
+    <div class="suffix-box-right">
+        <span class="suffix-box-title">文章作者：</span>Liniszz
+        <br>
+        <span class="suffix-box-title">文章出处：</span><a href="/posts/3717965916/" target="_blank">JVM---虚拟机栈</a>
+        <br>
+        <span class="suffix-box-title">作者签名：</span>脚踏实地.
+        <br>
+        <span class="suffix-box-title">关于主题：</span><a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+        <br>
+        <span class="suffix-box-title">版权声明：</span>文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+        <br>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+                
+                
+                    <div class="tag">
+                        标签：
                         
-                            目前共计 30 篇日志，继续加油！
+                            <a href="/tag/Jvm/">Jvm</a>
                         
-                    </span>
+                    </div>
+                
+                <div class="article-prev-next">
                     
                     
-                        
-                            <div class="archive-title">
-                                <h2 class="archive-year">2023</h2>
-                            </div>
-                            
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3717965916/"><span>JVM---虚拟机栈</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">05-12</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/1127160023/"><span>多线程---线程的创建方式</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">05-12</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/2235037535/"><span>双亲委派机制</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">05-12</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/43085821/"><span>mysql中值为null的值是否占用存储空间</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-24</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3751830285/"><span>LeetCode-20-有效的括号</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-15</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3524943812/"><span>LeetCode-225-用队列实现栈</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-14</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3184173339/"><span>LeetCode-459-重复的子字符串</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-12</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3695291344/"><span>LeetCode-28-实现strStr()</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-10</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/3950551804/"><span>左旋转字符串</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-10</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                           
-                        <div class="article">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="/posts/4200647229/"><span>LeetCode-53:最大子数组和</span></a></h1>
-                                <div class="article-meta">
-                                    <span class="article-time">04-06</span>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/posts/1127160023/" class="next-prefix">» </a> 下一篇：    <a href="/posts/1127160023/" title="发布于 2023-05-12 08:48">多线程---线程的创建方式</a>
                     
                 </div>
             </div>
             
+    <div class="article-comments">
         
-    <div class="pagination-bottom">
-        <div class="pagination">
-            
-                <a href="/archive/2023/page/2/">下一页</a>
-            
-        </div>
+            <div class="comments-title">
+                评论列表
+            </div>
+        
+        <div class="comments-content"></div>
     </div>
 
+        </div>
     
 </div>
     <div id="footer"></div>
@@ -206,7 +160,7 @@
                     
                         <li class=""><a href="/tag" class="" target="_self"><span class="iconfont icon-discount-fill"></span>标签</a></li>
                     
-                        <li class=" active "><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
+                        <li class=""><a href="/archive" class="" target="_self"><span class="iconfont icon-calendar-fill"></span>归档</a></li>
                     
                         <li class=""><a href="/about" class="" target="_self"><span class="iconfont icon-about-fill"></span>关于</a></li>
                     
